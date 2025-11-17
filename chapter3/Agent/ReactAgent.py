@@ -6,7 +6,7 @@ from chapter3.tool.search import search
 
 
 REACT_PROMPT_TEMPLATE=""
-with open('../prompt.txt', 'r', encoding='utf-8') as file:
+with open('../prompt/prompt.txt', 'r', encoding='utf-8') as file:
     REACT_PROMPT_TEMPLATE = file.read()
 
 class ReActAgent:

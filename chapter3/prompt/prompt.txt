@@ -14,4 +14,3 @@ Action: 你决定采取的行动，必须是以下格式之一:
 现在，请开始解决以下问题:
 Question: {question}
 History: {history}
-"""
