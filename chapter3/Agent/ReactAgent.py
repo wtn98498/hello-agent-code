@@ -58,7 +58,7 @@ class ReActAgent:
             # 4. 执行Action
             if action.startswith("Finish"):
                 # 如果是Finish指令，提取最终答案并结束
-                final_answer = re.match(r"Finish\[(.*)\]", action).group(1)
+                final_answer = self._parse_action_input(action)
                 print(f"🎉 最终答案: {final_answer}")
                 return final_answer
 
@@ -81,11 +81,9 @@ class ReActAgent:
                 self.history.append(f"Action: {action}")
                 self.history.append(f"Observation: {observation}")
 
-                # 循环结束
-
-
-            print("已达到最大步数，流程终止。")
-            return None
+        # 循环结束
+        print("已达到最大步数，流程终止。")
+        return None
 
     # (这些方法是 ReActAgent 类的一部分)
     def _parse_output(self, text: str):
@@ -102,6 +100,10 @@ class ReActAgent:
         if match:
             return match.group(1), match.group(2)
         return None, None
+
+    def _parse_action_input(self, action_text: str):
+        match = re.match(r"\w+\[(.*)\]", action_text)
+        return match.group(1) if match else ""
 
 if __name__ == '__main__':
     llm_client = HelloAgentsLLM()
